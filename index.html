@@ -1,1 +1,37 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta http-equiv="refresh" content="0; url=/greibi.html"><title>Greibi Study</title><script>location.replace('/greibi.html');</script></head><body style="margin:0;background:#070a18;color:#fff;font-family:system-ui;display:grid;place-items:center;min-height:100vh"><p>Abriendo Greibi Study…</p></body></html>
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Greibi Study</title><script>
+(function(){
+  const KEY='greibiStudyHotfix';
+  const santander=[
+    {id:'soa-tiempo',icon:'⏰',title:'Aprenda a gestionar su tiempo',provider:'Santander Open Academy',progress:0},
+    {id:'soa-bienestar-estres',icon:'🌿',title:'Bienestar y estrés laboral',provider:'Santander Open Academy',progress:0},
+    {id:'soa-burnout',icon:'🧘',title:'Burnout laboral: cómo prevenir el agotamiento y recuperar tu equilibrio',provider:'Santander Open Academy',progress:0},
+    {id:'soa-customer-centricity',icon:'🎯',title:'Customer centricity y experiencia de cliente: estrategia y transformación digital para líderes',provider:'Santander Open Academy',progress:0},
+    {id:'soa-gemini',icon:'✨',title:'Domina la IA con Gemini',provider:'Santander Open Academy',progress:0},
+    {id:'soa-excel',icon:'📊',title:'Excel',provider:'Santander Open Academy',progress:0},
+    {id:'soa-chatgpt',icon:'🤖',title:'Fundamentos de ChatGPT',provider:'Santander Open Academy',progress:0},
+    {id:'soa-gestion-estres',icon:'🧠',title:'Gestión del estrés',provider:'Santander Open Academy',progress:0},
+    {id:'soa-proyectos-equipos',icon:'🗂️',title:'Gestión Efectiva de proyectos y equipos',provider:'Santander Open Academy',progress:0},
+    {id:'soa-alto-rendimiento',icon:'🚀',title:'Mentalidad de alto rendimiento: foco, confianza y éxito profesional',provider:'Santander Open Academy',progress:0},
+    {id:'soa-power-bi',icon:'📈',title:'Power BI Intermedio: Análisis y modelado de datos',provider:'Santander Open Academy',progress:0},
+    {id:'soa-product-management',icon:'📦',title:'Product management: diseño y lanzamiento de productos digitales',provider:'Santander Open Academy',progress:0},
+    {id:'soa-prompting',icon:'💡',title:'Prompting responsable: maximiza la IA en tu negocio',provider:'Santander Open Academy',progress:0}
+  ];
+  try{
+    const saved=JSON.parse(localStorage.getItem(KEY)||'{}');
+    const current=Array.isArray(saved.courses)?saved.courses:[];
+    const ids=new Set(current.map(c=>c.id));
+    const titles=new Set(current.map(c=>String(c.title||'').trim().toLowerCase()));
+    for(const c of santander){
+      if(!ids.has(c.id) && !titles.has(c.title.toLowerCase())) current.push(c);
+    }
+    saved.courses=current;
+    if(!Array.isArray(saved.notes)) saved.notes=[];
+    if(!Array.isArray(saved.tasks)) saved.tasks=[];
+    if(typeof saved.minutes!=='number') saved.minutes=0;
+    saved.santanderCoursesAdded=true;
+    saved.santanderUpdatedAt=new Date().toISOString();
+    localStorage.setItem(KEY,JSON.stringify(saved));
+  }catch(e){}
+  location.replace('/greibi.html?courses=santander-v1');
+})();
+</script></head><body style="margin:0;background:#070a18;color:#fff;font-family:system-ui;display:grid;place-items:center;min-height:100vh"><p>Añadiendo tus cursos de Santander Open Academy…</p></body></html>
